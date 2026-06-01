@@ -64,7 +64,7 @@ app.post('/products', async (req, res) => {
             price: req.body.price,
         })
     if (error) {
-        res.send(error);
+        return res.status(400).send(error);
     }
     res.send("created!!");
     console.log("retorno "+ req.body.name);
@@ -83,7 +83,7 @@ app.put('/products/:id', async (req, res) => {
         })
         .eq('id', req.params.id)
     if (error) {
-        res.send(error);
+        return res.status(400).send(error);
     }
     res.send("updated!!");
 });
@@ -95,7 +95,7 @@ app.delete('/products/:id', async (req, res) => {
         .delete()
         .eq('id', req.params.id)
     if (error) {
-        res.send(error);
+        return res.status(400).send(error);
     }
     res.send("deleted!!")
     console.log("delete: " + req.params.id);
